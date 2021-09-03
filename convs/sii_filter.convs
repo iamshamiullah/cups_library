@@ -1,0 +1,7 @@
+########################################################################
+#
+# Raster filters...
+#
+# pstoraster is part of GPL Ghostscript...
+#
+application/vnd.cups-postscript	application/vnd.cups-raster	100	pstoraster

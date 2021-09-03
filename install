@@ -1,0 +1,129 @@
+#!/bin/sh
+
+usage ()
+{
+	echo "Usage: $0 make (cups_install_prefix)"
+	echo "       $0 install"
+}
+
+errout () 
+{
+	exit 1
+}
+
+ontrap ()
+{
+	echo
+	echo "Trap recieved.."
+	exit 1
+}
+
+
+###################### Checking argument. ############################
+if [ x$1 != "xmake" -a x$1 != "xinstall" ]; then
+	echo $1
+	usage
+	exit 1
+fi
+
+if [ x$1 == "xmake" ]; then
+	prefix=$2
+	if [ -z $prefix ]; then
+		prefix=/usr
+	fi
+	echo $prefix > .prefix
+fi
+
+trap ontrap 1 2 3 9 15
+
+CDIR=`pwd`
+
+PATH=/usr/bin:/usr/sbin:/bin:/sbin
+
+################### Checking distribution. ###########################
+DIST="Unknown"
+if [ -f /etc/SuSE-release ]; then
+	DIST=SuSE
+elif [ -f /etc/redhat-release ]; then
+	DIST=RedHat
+elif [ -f /etc/debian_version ]; then
+	DIST=Debian
+fi
+
+
+################## Configure and install Filter #####################
+CONFIGOPS="--with-cups-dir=$prefix"
+if [ $1 == "make" ]; then
+	./configure $CONFIGOPS
+	if [ $? != 0 ]; then
+		echo "siicupsdrv configure faild. exit."
+		errout
+	fi
+	make
+	if [ $? != 0 ]; then
+		echo "siicupsdrv make faild. exit."
+		errout
+	fi
+	echo "Please switch user to root and run ``$0 install''"
+	exit 0
+else 
+	if [ ! -f .prefix ]; then
+		echo "Please run '$0 make'."
+		exit 1
+	fi
+	prefix=`cat .prefix`
+	if [ -z $prefix ]; then
+		"Please run ``$0 make''."
+		exit 1
+	fi
+	make install
+	if [ $? != 0 ]; then
+		echo "siicupsdrv install faild. exit."
+		errout
+	fi
+fi
+
+######################## Change mime.conv #############################
+if [ $prefix == /usr ]; then
+	MIMECONV=/etc/cups/mime.convs
+else
+	MIMECONV=$prefix/etc/cups/mime.convs
+fi
+if [ -f $MIMECONV ] ; then
+	echo -n "Updating $MIMECONV..."
+	sed 's/^#application\/vnd.cups-postscript/application\/vnd.cups-postscript/' $MIMECONV > $MIMECONV.new
+	mv $MIMECONV.new $MIMECONV
+	echo "done."
+fi
+
+################# Configure and install CUPS #########################
+if [ -f sources/cups-$DIST ]; then
+	echo -n "Install cups startup scripts."
+	cp sources/cups-$DIST /etc/init.d/cups
+	chmod +x /etc/init.d/cups
+	echo "done."
+fi
+
+########################### Enabling CUPS ############################ 
+if [ -x /sbin/chkconfig ]; then
+	echo -n "Enabling cups..."
+	/sbin/chkconfig --add cups > /dev/null 
+	/sbin/chkconfig cups on > /dev/null 
+	echo "done."
+	echo -n "stopping cups..."
+	/etc/init.d/cups stop
+	echo "done."
+	sleep 2
+	echo -n "starting cups..."
+	/etc/init.d/cups start
+	echo "done."
+elif [ $DIST == Debian ]; then
+	echo -n "stopping cups..."
+	/etc/init.d/cupsys stop
+	echo "done."
+	sleep 2
+	echo -n "starting cups..."
+	/etc/init.d/cupsys start
+	echo "done."
+fi
+

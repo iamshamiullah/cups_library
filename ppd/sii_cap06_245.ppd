@@ -1,0 +1,159 @@
+*PPD-Adobe:             "4.3"
+*FormatVersion:         "4.3"
+*FileVersion:           "1.0"
+*LanguageVersion:       English
+*LanguageEncoding:      ISOLatin1
+*PCFileName:            "sii_cap06_245.ppd"
+*Manufacturer:          "SII"
+*Product:               "(CAP06-245)"
+*1284DeviceID:          "MFG:SII;CMD:SII;MDL:CAP06-245;CLS:PRINTER;"
+*cupsVersion:           1.2
+*cupsManualCopies:      True
+*cupsModelNumber:       7
+*cupsFilter:            "application/vnd.cups-raster 0 rastertosii"
+*ModelName:             "CAP06-245"
+*ShortNickName:         "CAP06-245"
+*NickName:              "SII CAP06-245"
+*PSVersion:             "(3010.000) 550"
+*LanguageLevel:         "3"
+*ColorDevice:           False
+*DefaultColorSpace:     Gray
+*FileSystem:            False
+*Throughput:            "1"
+*LandscapeOrientation:  Plus90
+*VariablePaperSize:     True
+*TTRasterizer:          Type42
+
+
+*% Print Quality
+*OpenUI *PrintQuality/Print Quality: PickOne
+*OrderDependency: 5 AnySetup *PrintQuality
+*DefaultPrintQuality: Normal
+*PrintQuality Normal/Normal mode: "<</cupsBitsPerColor 8/HWResolution [203 203]>>setpagedevice"
+*PrintQuality Draft/Draft mode: "<</cupsBitsPerColor 8/HWResolution [101 101]>>setpagedevice"
+*CloseUI: *PrintQuality
+
+
+*OpenUI *PageSize/Media Size: PickOne
+*OrderDependency: 10 AnySetup *PageSize
+*DefaultPageSize: X48MMY200MM
+*PageSize X48MMY200MM/48mm * 200mm:	"
+	  <</PageSize[136 567]/ImagingBBox null>>
+	  setpagedevice"
+*PageSize X48MMY1000MM/48mm * 1000mm:	"
+	  <</PageSize[136 2835]/ImagingBBox null>>
+	  setpagedevice"
+*PageSize A4/A4 reduced to 48mm:	"
+	  <</HWResolution [46 46]/PageSize[595 842]/ImagingBBox null>>
+	  setpagedevice"
+*PageSize Letter/Letter reduced to 48mm:	"
+	  <</HWResolution [44 44]/PageSize[612 792]/ImagingBBox null>>
+	  setpagedevice"
+*PageSize SELECTPAPERXXMM/Custom Paper Size(48mm * 297mm):	"
+	  <</PageSize[136 842]/ImagingBBox null>>
+	  setpagedevice"
+*CloseUI: *PageSize
+
+
+*OpenUI *PageRegion: PickOne
+*OrderDependency: 10 AnySetup *PageRegion
+*DefaultPageRegion: X48MMY200MM
+*PageRegion X48MMY200MM/48mm * 200mm:	"
+	  <</PageSize[136 567]/ImagingBBox null>>
+	  setpagedevice"
+*PageRegion X48MMY1000MM/48mm * 1000mm:	"
+	  <</PageSize[136 2835]/ImagingBBox null>>
+	  setpagedevice"
+*PageRegion A4/A4 reduced to 48mm:	"
+	  <</HWResolution [46 46]/PageSize[595 842]/ImagingBBox null>>
+	  setpagedevice"
+*PageRegion Letter/Letter reduced to 48mm:	"
+	  <</HWResolution [44 44]/PageSize[612 792]/ImagingBBox null>>
+	  setpagedevice"
+*PageRegion SELECTPAPERXXMM/Custom Paper Size(48m * 297mm):	"
+	  <</PageSize[136 842]/ImagingBBox null>>
+	  setpagedevice"
+*CloseUI: *PageRegion
+
+
+
+*DefaultImageableArea:	X48MMY200MM
+*ImageableArea X48MMY200MM:			"0.0 0.0 136.0 567.0"
+*ImageableArea X48MMY1000MM:		"0.0 0.0 136.0 2835.0"
+*ImageableArea A4:					"0.0 0.0 595.0 842.0"
+*ImageableArea Letter:				"0.0 0.0 612.0 792.0"
+*ImageableArea SELECTPAPERXXMM:	"0.0 0.0 136.0 842.0"
+
+
+*DefaultPaperDimension: X48MMY200MM
+*PaperDimension X48MMY200MM:		"136 567"
+*PaperDimension X48MMY1000MM:		"136 2835"
+*PaperDimension A4:					"595 842"
+*PaperDimension Letter:				"612 792"
+*PaperDimension SELECTPAPERXXMM:	"136 842"
+
+
+*MaxMediaWidth:  "136"
+*MaxMediaHeight: "23219"
+*HWMargins:	 0 0 0 0
+*CustomPageSize True: "pop pop pop <</PageSize[5 -2 roll]/ImagingBBox null>>setpagedevice"
+*ParamCustomPageSize Width:        1 points 72 136
+*ParamCustomPageSize Height:       2 points 72 23219
+*ParamCustomPageSize WidthOffset:  3 points 0 0
+*ParamCustomPageSize HeightOffset: 4 points 0 0
+*ParamCustomPageSize Orientation:  5 int 0 0
+
+*% Cut Mode
+*OpenUI *PageCutMode/Cut Mode: PickOne
+*DefaultPageCutMode: FullCutPage
+*PageCutMode FullCutPage/Full Cut: ""
+*PageCutMode PartialCutPage/Partial Cut: ""
+*PageCutMode NoCutPage/No Cut: ""
+*CloseUI: *PageCutMode
+
+*% Print Density: PickOne
+*OpenUI *PrintDensity/Print Density: PickOne
+*DefaultPrintDensity: SpecifiedValue
+*PrintDensity SpecifiedValue/specifiedvalue: ""
+*PrintDensity 70Percent/70%: ""
+*PrintDensity 80Percent/80%: ""
+*PrintDensity 90Percent/90%: ""
+*PrintDensity 100Percent/100%: ""
+*PrintDensity 110Percent/110%: ""
+*PrintDensity 120Percent/120%: ""
+*PrintDensity 130Percent/130%: ""
+*CloseUI: *PrintDensity
+
+*% Print Speed
+*OpenUI *PrintSpeed/Print Speed: PickOne
+*DefaultPrintSpeed: SpecifiedValue
+*PrintSpeed SpecifiedValue/specifiedvalue: ""
+*PrintSpeed high/High: ""
+*PrintSpeed quality/Quality: ""
+*CloseUI: *PrintSpeed
+
+*% Cut Timing
+*OpenUI *CutTiming/Cut Timing: PickOne
+*DefaultCutTiming: Page
+*CutTiming Page/Each Page: ""
+*CutTiming Document/Each Document: ""
+*CloseUI: *CutTiming
+
+*% Blank Image
+*OpenUI *BlankImage/Blank Image: PickOne
+*OrderDependency: 10 AnySetup *BlankImage
+*DefaultBlankImage: feed
+*BlankImage feed/Feed: ""
+*BlankImage nonfeed/Non feed: ""
+*CloseUI: *BlankImage
+
+*% Dither
+*OpenUI *Dither/Dither Type: PickOne
+*OrderDependency: 10 AnySetup *Dither
+*DefaultDither: ditherScreen
+*Dither ditherNone/None: ""
+*Dither ditherScreen/Screen: ""
+*Dither ditherErrDiff/Error Diffusion: ""
+*CloseUI: *Dither
+
+*% End
